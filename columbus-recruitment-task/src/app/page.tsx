@@ -1,9 +1,10 @@
 import ProductListing from "@/components/ProductListing/ProductListing";
+import { getProducts } from "@/services/products";
 
-export default function Home(){
-  return (
-    <main>
-      <ProductListing />
-    </main>
-  );
+export default async function Home(){
+  const data = await getProducts();
+
+  return <ProductListing data={data} />;
+    
+
 }

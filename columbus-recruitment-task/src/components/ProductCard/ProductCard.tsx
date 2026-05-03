@@ -1,21 +1,68 @@
+import type { Product } from "@/types/columbus";
+import { calculateDiscountedPrice, formatPrice } from "@/utils/price";
 import styles from "./ProductCard.module.css";
 
-export default function ProductCard() {
+type ProductCardProps = {
+  product: Product;
+  onAddToCart: (product: Product) => Promise<void>;
+  isAdding: boolean;
+};
+
+export default function ProductCard({
+  product,
+  onAddToCart,
+  isAdding,
+}: ProductCardProps) {
+  const discountedPrice = product.promotion
+    ? calculateDiscountedPrice(product.price, product.promotion.percentage)
+    : null;
+
   return (
     <article className={styles.card}>
-      <div className={styles.imagePlaceholder}>Image</div>
+      <div className={styles.imageWrapper}>
+        <img
+          className={styles.image}
+          src={product.image.url}
+          alt={product.image.altText}
+        />
+      </div>
 
       <div className={styles.content}>
-        <p className={styles.brand}>Brand name</p>
-        <h2 className={styles.title}>Product title</h2>
-        <p className={styles.description}>Short product description</p>
+        <p className={styles.brand}>{product.brandName}</p>
+        <h2 className={styles.title}>{product.title}</h2>
+        <p className={styles.description}>{product.description}</p>
+
+        {product.promotion && (
+          <div className={styles.promotion}>
+            <span>{product.promotion.name}</span>
+            <span>-{product.promotion.percentage}%</span>
+          </div>
+        )}
 
         <div className={styles.footer}>
-          <p className={styles.price}>€99.99</p>
-          <button className={styles.button} type="button">
-            Add to cart
+          <div className={styles.priceBlock}>
+            {discountedPrice !== null ? (
+              <>
+              <p className={styles.oldPrice}>{formatPrice(product.price)}</p>
+              <p className={styles.discountPrice}>
+              {formatPrice(discountedPrice)}
+              </p>
+              </>
+            ) : (
+              <p className={styles.price}>{formatPrice(product.price)}</p>
+            )}
+          </div>
+
+          <button
+            className={styles.button}
+            type="button"
+            disabled={isAdding}
+            onClick={() => onAddToCart(product)}
+            aria-label={`Add ${product.title} to cart`}
+          >
+            {isAdding ? "Adding..." : "Add to cart"}
           </button>
-        </div>
+      </div>
       </div>
     </article>
   );

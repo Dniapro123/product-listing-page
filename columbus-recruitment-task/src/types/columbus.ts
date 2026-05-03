@@ -5,6 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+
 export interface ColumbusRecruitmentData {
   title: string;
   logo: Image;
@@ -14,7 +15,7 @@ export interface ColumbusRecruitmentData {
   products: [Product, ...Product[]];
 }
 export interface Image {
-  link: string;
+  url: string;
   altText: string;
 }
 export interface Product {
