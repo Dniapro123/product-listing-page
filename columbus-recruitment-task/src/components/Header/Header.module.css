@@ -1,0 +1,29 @@
+.header {
+height: 72px;
+padding: 0 16px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+/* border-bottom: 1px solid #dee3ec; */
+border-bottom: 1px solid #dee3ec;
+background: #ffffff;
+}
+
+.logo {
+font-size: 24px;
+font-weight: 700;
+color: #000000;
+}
+
+.cartButton{
+border: 1px solid #d1d5db;
+background: #ffffff;
+border-radius: 999px;
+padding: 10px 14px;
+cursor: pointer;
+}
+
+.badge {
+  margin-left: 6px;
+  font-weight: 700;
+}

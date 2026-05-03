@@ -1,7 +1,9 @@
+import ProductListing from "@/components/ProductListing/ProductListing";
+
 export default function Home(){
   return (
     <main>
-      <h1>Columbus Recruitment</h1>
+      <ProductListing />
     </main>
   );
 }
