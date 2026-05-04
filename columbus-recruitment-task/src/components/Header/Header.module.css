@@ -1,29 +1,89 @@
 .header {
-height: 72px;
-padding: 0 16px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-/* border-bottom: 1px solid #dee3ec; */
-border-bottom: 1px solid #dee3ec;
-background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.inner {
+  width: min(1180px, calc(100% - 32px));
+  height: 76px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-font-size: 24px;
-font-weight: 700;
-color: #000000;
+  color: var(--logo-color);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 400;
+  letter-spacing: -0.1em;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.cartButton{
-border: 1px solid #d1d5db;
-background: #ffffff;
-border-radius: 999px;
-padding: 10px 14px;
-cursor: pointer;
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.themeButton,
+.cartButton {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.themeButton:hover,
+.cartButton:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+}
+
+.themeButton {
+  width: 44px;
+  height: 44px;
+}
+
+.cartButton {
+  height: 44px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
 }
 
 .badge {
-  margin-left: 6px;
-  font-weight: 700;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .cartButton span:nth-child(2) {
+    display: none;
+  }
 }

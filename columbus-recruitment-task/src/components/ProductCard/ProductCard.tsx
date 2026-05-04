@@ -1,6 +1,9 @@
+"use client";
+
 import type { Product } from "@/types/columbus";
 import { calculateDiscountedPrice, formatPrice } from "@/utils/price";
 import styles from "./ProductCard.module.css";
+import { useState } from "react";
 
 type ProductCardProps = {
   product: Product;
@@ -17,14 +20,24 @@ export default function ProductCard({
     ? calculateDiscountedPrice(product.price, product.promotion.percentage)
     : null;
 
+    const [hasImageError, setHasImageError] = useState(false);
+  const imageUrl = product.image.url || product.image.link;
+
   return (
     <article className={styles.card}>
       <div className={styles.imageWrapper}>
-        <img
-          className={styles.image}
-          src={product.image.url}
-          alt={product.image.altText}
-        />
+        {imageUrl && !hasImageError ? (
+          <img
+            className={styles.image}
+            src={imageUrl}
+            alt={product.image.altText}
+            onError={() => setHasImageError(true)}
+          />
+        ) : (
+          <div className={styles.imageFallback}>
+            <span>{product.image.altText}</span>
+          </div>
+        )}
       </div>
 
       <div className={styles.content}>
@@ -57,7 +70,7 @@ export default function ProductCard({
             className={styles.button}
             type="button"
             disabled={isAdding}
-            onClick={() => onAddToCart(product)}
+            onClick={() => { console.log("clicked", product.title); onAddToCart(product);}}
             aria-label={`Add ${product.title} to cart`}
           >
             {isAdding ? "Adding..." : "Add to cart"}
