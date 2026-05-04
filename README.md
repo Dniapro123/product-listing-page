@@ -105,7 +105,7 @@ src/
 ## Notes
 
 * No UI libraries were used (only CSS Modules)
-* The CSS design for Columbus-styled logo in the header element was created using Gemini tool.
+
 
 
 
