@@ -7,6 +7,8 @@ It displays products fetched from an external API and allows users to add items 
 
 The application focuses on clean UI, accessibility, and proper state handling.
 
+
+
 ---
 
 ## Tech Stack
@@ -20,6 +22,7 @@ The application focuses on clean UI, accessibility, and proper state handling.
 ---
 
 ## Features
+There are implemented Responsive Web Design, Dark/Light theme, filtring/sorting elements.
 
 ### Product Listing
 
@@ -48,7 +51,7 @@ The application focuses on clean UI, accessibility, and proper state handling.
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install
@@ -102,12 +105,13 @@ src/
 ## Notes
 
 * No UI libraries were used (only CSS Modules)
-* The CSS design for Columbus-styled logo was creating using Gemini
+* The CSS design for Columbus-styled logo in the header element was created using Gemini tool.
 
 
 
 ---
 
 ## Author
-Uladzisla Budziankou for
+Uladzisla Budziankou 
+for
 Frontend Recruitment Task – Columbus
