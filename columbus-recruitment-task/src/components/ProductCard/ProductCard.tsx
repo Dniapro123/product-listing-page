@@ -16,14 +16,19 @@ export default function ProductCard({
   onAddToCart,
   isAdding,
 }: ProductCardProps) {
+
+  // Calculate the discounted price if a promotion is available
   const discountedPrice = product.promotion
     ? calculateDiscountedPrice(product.price, product.promotion.percentage)
     : null;
 
     const [hasImageError, setHasImageError] = useState(false);
-  const imageUrl = product.image.url || product.image.link;
+  const imageUrl = product.image.url || product.image.url;
 
+  //Return the product card with all details
   return (
+
+    // Handle image loading errors by showing a fallback
     <article className={styles.card}>
       <div className={styles.imageWrapper}>
         {imageUrl && !hasImageError ? (
@@ -64,8 +69,8 @@ export default function ProductCard({
             ) : (
               <p className={styles.price}>{formatPrice(product.price)}</p>
             )}
-          </div>
 
+          </div>
           <button
             className={styles.button}
             type="button"

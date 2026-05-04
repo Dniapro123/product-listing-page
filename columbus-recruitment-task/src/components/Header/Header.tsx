@@ -5,7 +5,7 @@ type HeaderProps = {
     theme: "light" | "dark";
     onToggleTheme: () => void;
 };
-
+// Header component with logo, theme toggle and cart button
 export default function Header({ cartCount, theme, onToggleTheme }: HeaderProps) {
     return (
         <header className ={styles.header} >

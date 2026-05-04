@@ -23,9 +23,9 @@ export default function ProductListing({ data }: ProductListingProps) {
   const [theme, setTheme] = useState<Theme>("light");
 
   // //Sorting and filtering states
-  // const [sortOrder, setSortOrder] = useState<"default" | "price-asc" | "price-desc">("default");
-  // const [discountFilter, setDiscountFilter] = useState<"all" | "discounted">("all");
-  // const [columns, setColumns] = useState<2 | 3 | 4>(3);
+  const [sortOrder, setSortOrder] = useState<"default" | "price-asc" | "price-desc">("default");
+  const [discountFilter, setDiscountFilter] = useState<"all" | "discounted">("all");
+  const [columns, setColumns] = useState<2 | 3 | 4>(3);
 
 //Function to handle adding product to cart with simulated delay
   async function handleAddToCart(product: Product) {
@@ -46,25 +46,25 @@ export default function ProductListing({ data }: ProductListingProps) {
     }
 
 // Compute the list of products to display based on sorting and filtering     
-// const visibleProducts = data.products
-  // .filter((product) => {
-  //   if (discountFilter === "discounted") {
-  //     return Boolean(product.promotion);
-  //   }
+const visibleProducts = data.products
+  .filter((product) => {
+    if (discountFilter === "discounted") {
+      return Boolean(product.promotion);
+    }
 
-  //   return true;
-  // })
-  // .toSorted((a, b) => {
-  //   if (sortOrder === "price-asc") {
-  //     return a.price - b.price;
-  //   }
+    return true;
+  })
+  .toSorted((a, b) => {
+    if (sortOrder === "price-asc") {
+      return a.price - b.price;
+    }
 
-  //   if (sortOrder === "price-desc") {
-  //     return b.price - a.price;
-  //   }
+    if (sortOrder === "price-desc") {
+      return b.price - a.price;
+    }
 
-  //   return 0;
-  // });
+    return 0;
+  });
 
 // Handle case when there are no products available
   if (!data.products.length) {
@@ -85,15 +85,15 @@ export default function ProductListing({ data }: ProductListingProps) {
 
       <main className={styles.main}>
         <ProductList
-        products={data.products}
+        products={visibleProducts}
         onAddToCart={handleAddToCart}
         addingProductId={addingProductId}
-        // sortOrder={sortOrder}
-        // onSortOrderChange={setSortOrder}
-        // discountFilter={discountFilter}
-        // onDiscountFilterChange={setDiscountFilter}
-        // columns={columns}
-        // onColumnsChange={setColumns}
+        sortOrder={sortOrder}
+        onSortOrderChange={setSortOrder}
+        discountFilter={discountFilter}
+        onDiscountFilterChange={setDiscountFilter}
+        columns={columns}
+        onColumnsChange={setColumns}
         />
       </main>
     </div>

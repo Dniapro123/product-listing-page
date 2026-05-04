@@ -7,25 +7,27 @@ type ProductListProps = {
   products: Product[];
   onAddToCart: (product: Product) => Promise<void>;
   addingProductId: string | null;
-//   sortOrder: "default" | "price-asc" | "price-desc";
-//   onSortOrderChange: (value: "default" | "price-asc" | "price-desc") => void;
-//   discountFilter: "all" | "discounted";
-//   onDiscountFilterChange: (value: "all" | "discounted") => void;
-//   columns: 2 | 3 | 4;
-//   onColumnsChange: (value: 2 | 3 | 4) => void;
+
+  sortOrder: "default" | "price-asc" | "price-desc";
+  onSortOrderChange: (value: "default" | "price-asc" | "price-desc") => void;
+  discountFilter: "all" | "discounted";
+  onDiscountFilterChange: (value: "all" | "discounted") => void;
+  columns: 2 | 3 | 4;
+  onColumnsChange: (value: 2 | 3 | 4) => void;
 };
-// const mockProducts = [1, 2, 3, 4, 5, 6];
+const mockProducts = [1, 2, 3, 4, 5, 6];
 
 export default function ProductList({
   products,
   onAddToCart,
   addingProductId,
-//   sortOrder,
-//   onSortOrderChange,
-//   discountFilter,
-//   onDiscountFilterChange,
-//   columns,
-//   onColumnsChange,
+//  Use these props for sorting 
+  sortOrder,
+  onSortOrderChange,
+  discountFilter,
+  onDiscountFilterChange,
+  columns,
+  onColumnsChange,
 }: ProductListProps) {
   return (
     <section className={styles.section} aria-labelledby="products-heading">
@@ -33,11 +35,11 @@ export default function ProductList({
         <p className={styles.eyebrow}>Product catalog</p>
         <h1 id="products-heading">Discover our products</h1>
         <p className={styles.subtitle}>
-          Curated performance essentials with clean design, clear pricing and smooth shopping flow.
+          Curated performance essentials with clean design, clear pricing and smooth shopping flow for clients.
         </p>
       </div>
-
-      {/* <div className={styles.toolbar} aria-label="Product controls">
+        {/* Use this for future sorting and filtering controls */}
+      <div className={styles.toolbar} aria-label="Product controls">
         <label>
           Sort
           <select
@@ -76,15 +78,15 @@ export default function ProductList({
             <option value={4}>4</option>
           </select>
         </label>
-      </div> */}
+      </div>
       
 
       {products.length ? (
-        // <div
-        //   className={styles.grid}
-        //   style={{ "--columns": columns } as React.CSSProperties}
-        // >
-        <div className={styles.grid}>
+        <div
+          className={styles.grid}
+          style={{ "--columns": columns } as React.CSSProperties}
+        >
+        {/* <div className={styles.grid}> */}
           {products.map((product) => (
             <ProductCard
               key={product.articleNumber}
