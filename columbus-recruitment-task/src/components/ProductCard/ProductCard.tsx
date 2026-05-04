@@ -11,6 +11,8 @@ type ProductCardProps = {
   isAdding: boolean;
 };
 
+/*==================================================================*/
+
 export default function ProductCard({
   product,
   onAddToCart,
@@ -75,7 +77,7 @@ export default function ProductCard({
             className={styles.button}
             type="button"
             disabled={isAdding}
-            onClick={() => { console.log("clicked", product.title); onAddToCart(product);}}
+            onClick={() => {  onAddToCart(product);}}
             aria-label={`Add ${product.title} to cart`}
           >
             {isAdding ? "Adding..." : "Add to cart"}
